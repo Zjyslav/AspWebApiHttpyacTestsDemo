@@ -1,0 +1,16 @@
+services:
+  api:
+    build:
+      context: ..
+      dockerfile: AspWebApiHttpyacTestsDemo.Api/Dockerfile
+    ports:
+      - "8080:8080"
+      - "8081:8081"
+  
+  httpyac:
+    image: ghcr.io/anweber/httpyac:latest
+    volumes:
+      - .:/data
+    entrypoint: ['httpyac', 'AspWebApiHttpyacTestsDemo.Api.http', '--all', '; echo sdfsdf']
+    depends_on:
+      - api

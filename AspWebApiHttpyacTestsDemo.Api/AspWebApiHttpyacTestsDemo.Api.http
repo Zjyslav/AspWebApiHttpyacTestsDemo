@@ -1,0 +1,29 @@
+@host = http://api:8080
+
+GET {{host}}/people
+?? status == 200
+
+###
+GET {{host}}/people/1
+?? status == 404
+
+###
+
+POST {{host}}/people
+Content-Type: application/json
+{
+  "Id": 0,
+  "FirstName": "John",
+  "LastName": "Doe",
+  "Age": 42,
+  "Email": "johndoe@localhost"
+}
+?? status == 201
+
+###
+
+GET {{host}}/people/1
+?? status == 200
+
+###
+
