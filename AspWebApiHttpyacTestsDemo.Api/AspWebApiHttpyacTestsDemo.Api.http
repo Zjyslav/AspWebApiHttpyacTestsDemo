@@ -1,4 +1,4 @@
-@host = http://api:8080
+@host = https://api:8081
 
 GET {{host}}/people
 ?? status == 200

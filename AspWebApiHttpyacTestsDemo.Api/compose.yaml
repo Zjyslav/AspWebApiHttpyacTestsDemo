@@ -3,14 +3,19 @@ services:
     build:
       context: ..
       dockerfile: AspWebApiHttpyacTestsDemo.Api/Dockerfile
-    ports:
-      - "8080:8080"
-      - "8081:8081"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=https://+:8081;http://+:8080
+      - ASPNETCORE_HTTPS_PORT=8081
+      - ASPNETCORE_Kestrel__Certificates__Default__Password=Zjyslav19
+      - ASPNETCORE_Kestrel__Certificates__Default__Path=/https/aspnetapp.pfx
+    volumes:
+      - ~/.aspnet/https:/https
   
   httpyac:
     image: ghcr.io/anweber/httpyac:latest
     volumes:
       - .:/data
-    entrypoint: ['httpyac', 'AspWebApiHttpyacTestsDemo.Api.http', '--all', '; echo sdfsdf']
+    entrypoint: ['httpyac', 'AspWebApiHttpyacTestsDemo.Api.http', '--all', '--insecure', '; echo sdfsdf']
     depends_on:
-      - api
+      - api   
