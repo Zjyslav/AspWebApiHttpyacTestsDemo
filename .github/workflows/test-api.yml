@@ -8,6 +8,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v4
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: 8.0.x
+    - name: Generate dev-cert
+      run: dotnet dev-certs https -ep ~/.aspnet/https/aspnetapp.pfx -p Zjyslav19
     - name: Docker Compose Action
       uses: hoverkraft-tech/compose-action@v2.0.1
       with:
