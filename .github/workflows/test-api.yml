@@ -12,6 +12,8 @@ jobs:
       uses: actions/setup-dotnet@v4
       with:
         dotnet-version: 8.0.x
+    - name: Clean dev-cert
+      run: dotnet dev-certs https --clean
     - name: Generate dev-cert
       run: dotnet dev-certs https -ep ~/.aspnet/https/aspnetapp.pfx -p Zjyslav19
     - name: Docker Compose Action
