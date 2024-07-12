@@ -1,12 +1,12 @@
-docker build -q -t asp-web-api-httpyac-test-demo:latest -f Dockerfile .. | out-null
-docker network create httpyac-test  | out-null
+docker build -q -t asp-web-api-httpyac-test-demo:latest -f Dockerfile .. | Out-Null
+docker network create httpyac-test | Out-Null
 
-docker run --name httpyac-test-demo-api --network httpyac-test -p 8080:8080 -qd asp-web-api-httpyac-test-demo:latest  | out-null
-docker run --name httpyac --network httpyac-test -it -v ${PWD}:/data ghcr.io/anweber/httpyac:latest **/*.http --var host=http://httpyac-test-demo-api:8080 --all
+docker run --name api --network httpyac-test -qd -e ASPNETCORE_HTTPS_PORTS=8081 -e ASPNETCORE_Kestrel__Certificates__Default__Password="Zjyslav19" -e ASPNETCORE_Kestrel__Certificates__Default__Path=/https/aspnetapp.pfx -v "$env:USERPROFILE/.aspnet/https:/https/" asp-web-api-httpyac-test-demo:latest | Out-Null
+docker run --name httpyac --network httpyac-test -it -v ${PWD}:/data ghcr.io/anweber/httpyac:latest **/*.http --all --insecure
 
-docker container stop httpyac-test-demo-api | out-null
+docker container stop api | Out-Null
 
-docker container remove httpyac-test-demo-api | out-null
-docker container remove httpyac | out-null
+docker container remove api | Out-Null
+docker container remove httpyac | Out-Null
 
-docker network remove httpyac-test | out-null
+docker network remove httpyac-test | Out-Null
