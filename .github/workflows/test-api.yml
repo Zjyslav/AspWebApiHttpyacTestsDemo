@@ -1,0 +1,14 @@
+name: Run API tests using Docker Compose
+
+on:
+  workflow_dispatch:
+
+jobs:
+  test-api:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Docker Compose Action
+      uses: hoverkraft-tech/compose-action@v2.0.1
+      with:
+        compose-file: "AspWebApiHttpyacTestsDemo.Api/compose.yaml"
+        up-flags: "--build --abort-on-container-exit"
