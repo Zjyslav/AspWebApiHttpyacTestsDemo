@@ -7,6 +7,7 @@ jobs:
   test-api:
     runs-on: ubuntu-latest
     steps:
+    - uses: actions/checkout@v4
     - name: Docker Compose Action
       uses: hoverkraft-tech/compose-action@v2.0.1
       with:
