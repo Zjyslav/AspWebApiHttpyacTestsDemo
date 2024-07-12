@@ -16,6 +16,8 @@ jobs:
       run: dotnet dev-certs https --clean
     - name: Generate dev-cert
       run: dotnet dev-certs https -ep ~/.aspnet/https/aspnetapp.pfx -p Zjyslav19
+    - name: set dev-cert permissions
+      run: sudo chmod -R a+rwx ~/.aspnet/https
     - name: Docker Compose Action
       uses: hoverkraft-tech/compose-action@v2.0.1
       with:
