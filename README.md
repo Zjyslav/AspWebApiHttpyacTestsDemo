@@ -1,4 +1,5 @@
 # ASP.NET Web API httpYac tests Demo
+[![Run API tests using Docker Compose](https://github.com/Zjyslav/AspWebApiHttpyacTestsDemo/actions/workflows/test-api.yml/badge.svg)](https://github.com/Zjyslav/AspWebApiHttpyacTestsDemo/actions/workflows/test-api.yml)  
 This is a demo of running automated API tests using .http files and [httpYac](https://httpyac.github.io/) in Docker containers.
 
 ## Powershell scripts
